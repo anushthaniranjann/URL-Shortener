@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const ShortUrl = require('./models/shortUrl')
 const app = express()
 
+//127.0.0.1
 mongoose.connect('mongodb://localhost/urlShortener', {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -22,6 +23,7 @@ app.post('/shortUrls', async(req, res) => {
     res.redirect('/')
 })
 
+//For checking no of clicks
 app.get('/:shortUrl', async(req, res) => {
     const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl })
     if (shortUrl == null) return res.sendStatus(404)
